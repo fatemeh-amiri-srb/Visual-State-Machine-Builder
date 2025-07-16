@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Visual State Machine Builder
 
-## Getting Started
+A visual editor for building finite state machines using drag-and-drop interactions. Built with **Next.js 14 (App Router)**, **React**, **TypeScript**, **Tailwind CSS**, and **Zustand**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🚀 Features
+
+* 📦 Add and position **state nodes** interactively
+* 🔁 Create **connections (transitions)** between states
+* 🧭 Export as clean, structured **JSON** for further use
+* 🔗 Share your entire state machine via **encoded URL**
+* 💾 Automatic **localStorage persistence**
+* ↩️ Undo / Redo support
+* 🧹 Clear all states and connections with confirmation
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology       | Purpose                 |
+| ---------------- | ----------------------- |
+| **Next.js 14**   | App router, SSR/CSR     |
+| **React**        | Interactive UI          |
+| **TypeScript**   | Type safety             |
+| **Tailwind CSS** | Utility-first styling   |
+| **Zustand**      | Global state management |
+| **uuid**         | Unique ID generation    |
+
+---
+
+## 📁 Project Structure (Simplified)
+
+```
+/components
+  └── Canvas.tsx        # Main editor UI
+  └── Node.tsx          # State node component
+/store
+  └── useEditorStore.ts # Zustand store for nodes and transitions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧑‍💻 How It Works
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Add a State
 
-## Learn More
+Click `Add State` to insert a new node in the canvas.
 
-To learn more about Next.js, take a look at the following resources:
+### Create Transitions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Drag from one node to another (in full version) or define via code to connect two states.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Export
 
-## Deploy on Vercel
+Click `Export JSON` to generate a structured JSON format like this:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```json
+{
+  "Idle": {
+    "on": {
+      "start": "Running"
+    }
+  },
+  "Running": {
+    "on": {
+      "stop": "Idle"
+    }
+  }
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Share
+
+Click `Share Link` to copy a URL with base64-encoded machine data.
+
+### Persistent Storage
+
+Uses `localStorage` to automatically save and restore your last graph.
+
+### Clear All
+
+Deletes all nodes and connections after confirmation.
+
+### Undo/Redo
+
+Step through the history of edits using `Undo` and `Redo` buttons.
+
+---
+
+## ✨ Possible Improvements
+
+* 📝 Edit transition labels and state names inline
+* 🧲 Snap-to-grid for better layout control
+* 💡 Visual connection creator (drag from node to node)
+* 📷 Export to image or SVG
+* ☁️ Collaboration (multi-user editing)
+* 🔍 Mini-map or zoom support
+
+---
+
+## 🧪 Tests
+
+Tests are not included yet — but would be ideally written with **Jest** and **React Testing Library**.
+
+---
+
+## 📬 Contact
+
+Created by \Fatemeh Amiri. Connect on https://www.linkedin.com/in/fatemeh-amiri-srb
